@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    window.addEventListener('touchend', function (e) {
+        ['first', 'second'].forEach((id) => {
+            let el = document.getElementById(id);
+            if (!el.contains(e.target)) {
+                el.blur();
+            }
+        })
+    });
+</script>
+<form>
+    <label for="first">First input:</label>
+    <input type="text" id="first" name="first">
+    <br><br>
+    <label for="second">Second input:</label>
+    <textarea id="second" name="second"></textarea><br><br>
+</form>
+</body>
+</html>
