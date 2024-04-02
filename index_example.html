@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            background-color: var(--tg-theme-bg-color);
+        }
+    </style>
+</head>
+<body>
+<script>
+    window.addEventListener('touchend', function (e) {
+        ['title', 'description', 'price'].forEach((id) => {
+            let el = document.getElementById(id);
+            if (!el.contains(e.target)) {
+                el.blur();
+            }
+        })
+    });
+</script>
+<section class="section pt-5">
+    <div class="container">
+        <p class="subtitle mb-3">Новое объявление</p>
+        <form>
+            <div class="field-label is-normal"><label class="label">Фото</label></div>
+            <div class="file is-normal is-boxed mb-3">
+                <label class="file-label">
+                    <input class="file-input" type="file" name="resume" inputmode="text"/>
+                    <span class="file-cta">
+                      <span class="file-label">Добавить фото</span>
+                    </span>
+                </label>
+            </div>
+
+            <div class="field">
+                <label class="label">Название</label>
+                <div class="control">
+                    <input id="title" class="input" type="text" placeholder="Пылесос" inputmode="text">
+                </div>
+            </div>
+
+            <!--            autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"-->
+
+            <div class="field">
+                <label class="label">Описание</label>
+                <div class="control">
+                    <textarea id="description" class="textarea" rows="3" inputmode="text"
+                              placeholder="Детали (размер, состояние и т.д.)"
+                    ></textarea>
+                </div>
+            </div>
+
+            <div class="field is-narrow is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Район</label>
+                </div>
+                <div class="control">
+                    <div class="select is-fullwidth">
+                        <select>
+                            <option>Аэропорт</option>
+                            <option>Пляж</option>
+                            <option>Центр</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field-label is-normal"><label class="label">Стоимость</label></div>
+            <div class="field has-addons is-horizontal">
+                <div class="control">
+                    <span class="select">
+                        <select>
+                            <option>฿</option>
+                            <option>$</option>
+                            <option>₽</option>
+                            <option>€</option>
+                        </select>
+                    </span>
+                </div>
+                <p class="control">
+                    <input id="price" class="input" type="number" placeholder="Стоимость" inputmode="number">
+                </p>
+            </div>
+
+            <div class="field is-grouped">
+                <div class="control">
+                    <button class="button is-link">Submit</button>
+                </div>
+                <div class="control">
+                    <button class="button is-link is-light">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+</body>
+</html>

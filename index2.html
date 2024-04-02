@@ -2,25 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Mebeab</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.11"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.11/dist/ext/json-enc.js"></script>
+
+    <style>
+        body {
+            background-color: var(--tg-theme-bg-color);
+        }
+    </style>
+    <script>
+        function initialLoad() {
+            fetch("http://localhost:8080/main").then((resp) => resp.text()).then((data) => {
+                let app = document.getElementById("app");
+                app.innerHTML = data;
+
+                htmx.process(app);
+            }).catch(err => {
+                console.log(err);
+            });
+        }
+
+        initialLoad()
+    </script>
 </head>
 <body>
-<script>
-    window.addEventListener('touchend', function (e) {
-        ['first', 'second'].forEach((id) => {
-            let el = document.getElementById(id);
-            if (!el.contains(e.target)) {
-                el.blur();
-            }
-        })
-    });
-</script>
-<form>
-    <label for="first">First input:</label>
-    <input type="text" id="first" name="first">
-    <br><br>
-    <label for="second">Second input:</label>
-    <textarea id="second" name="second"></textarea><br><br>
-</form>
+<div hx-on="htmx:configRequest: event.detail.headers=''; event.detail.headers['Content-Type']='application/x-www-form-urlencoded; charset=UTF-8'"/>
+<div id="app">...</div>
 </body>
 </html>
